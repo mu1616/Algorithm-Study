@@ -1,0 +1,16 @@
+이진탐색
+
+int left = 0;
+int right = length;
+int answer = 0;
+while(left <= right){
+	int mid = (left + right)/2
+	if(mid가 찾으려는 값보다 크거나 같다){
+		right = mid - 1;
+		answer = mid;
+	} else {    //mid가 찾으려는 값보다 작다
+		left = mid + 1;
+	}
+}
+
+//answer = mid 를 (mid가 찾으려는 값보다 작거나 같다) 일때로 보낼수도 있음!
