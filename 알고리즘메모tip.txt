@@ -17,3 +17,5 @@
 14. Set 의 contains 시간복잡도는 O(1) 이고 List의 contains 시간복잡도는 O(n) 이다.
      자바 시간복잡도 : https://soft.plusblog.co.kr/74
 15. 서로다른 요소의 개수 -> 해쉬 이용!!! (addall -> size) 
+16. 리스트가 비었는지 확인 할 때, list.isEmpty() 쓰는게 시간복잡도 빠름
+17. 새로운 클래스를 정의해서 풀어보자!
