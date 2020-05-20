@@ -23,8 +23,7 @@ class Main {
 			for (int j = 0; j < n; j++) {
 				if (i == 0 && j == 0) {
 					continue;
-				}
-				if (i == 0) {
+				} else if (i == 0) {
 					table[i][j] += table[i][j - 1];
 				} else if (j == 0) {
 					table[i][j] += table[i - 1][j];
