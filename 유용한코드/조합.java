@@ -27,7 +27,7 @@ class Main {
 		}
 	}
 	
-	
+	//combination2와 알고리즘을 동일하지만 stack 대신 배열 사용
 	int tmp[]
 	public void combination2(int []array, int start, int r) {
 		if(r==0) {
