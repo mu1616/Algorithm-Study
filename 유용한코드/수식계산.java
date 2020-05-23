@@ -22,8 +22,8 @@ class Main {
 		for(int i=0; i< exp.length(); i++) {
 			if(exp.charAt(i) == '*' || exp.charAt(i) == '+' || exp.charAt(i) == '-' ||
 					exp.charAt(i) == '/') {
-				list.add(exp.substring(n,i));  //수식 앞에 숫자 list에 추가
-				list.add(exp.substring(i,i+1));  //숫자 list에 추가
+				list.add(exp.substring(n,i));  //수식 앞에 숫자를 list에 추가
+				list.add(exp.substring(i,i+1));  //수식을 list에 추가
 				n = i+1;
 			}
 		}
