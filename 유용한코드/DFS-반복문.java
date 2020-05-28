@@ -9,11 +9,11 @@ void dfs(int node) {
 		if(!visited[curr]) {
 			visited[curr] = true;
 			//방문 했을 때 연산 //
-		}
 		
-		for(int next = 0; next < N; next++) {
-			if(!visited[next] && graph[curr][next])
-				stack[++top] = next;   //push 했다고 방문한건 아님 아직
+			for(int next = 0; next < N; next++) {
+				if(!visited[next] && graph[curr][next])
+					stack[++top] = next;   //push 했다고 방문한건 아님 아직
+			}
 		}
 	}
 }

@@ -1,14 +1,11 @@
 import java.util.*;
-
 class Main {
 	static Scanner scan = new Scanner(System.in);
-
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.solution();
 
 	}
-
 	public void solution() {
 		int n = scan.nextInt();
 		int m = scan.nextInt();
@@ -18,7 +15,6 @@ class Main {
 			int y = scan.nextInt();
 			table[x - 1][y - 1] = 1;
 		}
-
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
 				if (i == 0 && j == 0) {
@@ -30,12 +26,9 @@ class Main {
 				} else {
 					table[i][j] += Math.max(table[i][j - 1], table[i - 1][j]);
 				}
-
 			}
 		}
-
 		System.out.println(table[n-1][n-1]);
 
 	}
-
 }
