@@ -4,7 +4,7 @@
 //bfs에서는 먼저 넣은 정점을 먼저 방문 하므로 가능
 
 void bfs(int node){
-	bool visited[max] = {false};
+	boolean visited[max] = {false};
 	front = rear = -1;
 	visited[node] = true;
 	queue[++rear] = node;  //enqueue
