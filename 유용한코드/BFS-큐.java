@@ -1,7 +1,7 @@
 //BFS 알고리즘
 
 void bfs(int node){
-	bool visited[max] = { false };
+	boolean visited[max] = { false };
 	front = rear = -1;
 	queue[++rear] = node;   // enqueue
 	
