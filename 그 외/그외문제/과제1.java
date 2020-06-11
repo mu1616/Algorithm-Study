@@ -4,33 +4,28 @@ class Main {
 	static Scanner scan = new Scanner(System.in);
 	public static void main(String[] args) {
 		Main main = new Main();
-		int k[] = {2, 4, 6, 8, 10};
-		int s[] = {9, 3, 5, 7, 1};
+		Integer k[] = {2, 4, 6, 8, 10};
+		Integer s[] = {1, 2, 3, 4, 5};
 		main.solution(k, s);
 	}
 	
-	public void solution(int k[], int s[]) {
-		int visited[] = new int[k.length];
-		int result = 0;
-		
+	public void solution(Integer k[], Integer s[]) {
+		Arrays.sort(k);
+		Arrays.sort(s);
+		int front = 0;
+		int answer = 0;
 		for(int i=0; i< s.length; i++) {
-			int minDiff = 999999999;
-			int idx = -1;
-			for(int j=0; j< s.length; j++) {
-				if(visited[j] == 0) {
-					int diff = k[j] - s[i];
-					if(diff > 0 && diff < minDiff) {
-						minDiff = diff;
-						idx = j;
-					}
-				}			
-			}
-			if(idx != -1) {
-				visited[idx] = 1;
-				result++;
+			while(front != k.length) {
+				if(s[i] < k[front]) {
+					answer++;
+					front++;
+					break;
+				} else {
+					front++;
+				}
 			}
 		}
-		System.out.println(result);
+		System.out.println(answer);
 	}
 }
 /*

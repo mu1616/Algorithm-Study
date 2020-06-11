@@ -30,7 +30,7 @@ class Main {
 	}
 	
 
-}
+}	
 /*
 [3] 이번 주에는 지은이가 한학기 내내 연습하며 준비해 온 K-POP (Kyonggi-pop) Dancing
 Contest 가 있다. 이 댄스 경연대회에서는 총 n 개의 음악을 주어진 순서대로 틀어주며 각
