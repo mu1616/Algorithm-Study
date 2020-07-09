@@ -41,7 +41,7 @@ class Main {
 			for (int i = 5; i >= 1; i--) {
 				if (isCover(array, x, y, i)) {
 					if (stock[i] != 0) {
-						int copy[][] = cover(array, x, y, i);
+						int copy[][] = cover(array, x, y, i);					
 						stock[i] = stock[i] - 1;
 						recursion(copy, n + 1, sum + 1);
 						stock[i] = stock[i] + 1;
