@@ -9,37 +9,45 @@
 *i=j일수도 있다.
 */
 //부분연속 수열의 합이 M인 집합의 개수 찾기
+package algorithm;
+
 import java.util.*;
 
 class Main {
-	static HashMap<Integer, Integer> map = new HashMap<>();
 	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		int m = 5;
-		int []data = {1,2,2,1,2,2,1,2,2,1,2,2,1,2,2};
-		int start = 0;
-		int end = 0;
-		int count = 0;
-		int sum = 0;
-		sum = data[end];
-		while(true) {
-			if(sum == m) {
-				count++;
-			}
-			if(sum <= m) {
-				end = end + 1;
-				if(end == data.length) break; 
-				sum = sum + data[end];
-			}else {
-				sum = sum - data[start];   //start = start + 1 하기전에 sum에서 빼줘야함!!
-				start = start + 1;
-				if(start == data.length) break;				
-			}
-		}
-		System.out.println(count);
+		Main main = new Main();
+		main.solution();
 	}
 
+	public void solution() {
+		int n = scan.nextInt();
+		int m = scan.nextInt();
+		int array[] = new int[n];
+		
+		for(int i =0; i < n; i++)
+			array[i] = scan.nextInt();
+		
+		int sum = 0;
+		int end = 0;
+		int answer = 0;
+		
+		for(int start = 0; start < n; start++) {
+			while(sum < m && end < n) {
+				sum = sum + array[end];
+				end++;
+			}
+			
+			if(sum == m)
+				answer++;
+			
+			sum = sum - array[start];
+		}
+		
+		System.out.println(answer);
+		
+	}
 }
 
 //Prefix Sum 을 이용해 구간합 빠르게 계산하기 문제에 적용 가능!
