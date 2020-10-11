@@ -1,0 +1,71 @@
+최소 신장 트리 [MST]
+: 무방향 가중치 그래프에서 신장 트리를 구성하는 간선들의 가중치의 합이 최소인 신장 트리
+신장트리란? n개의 정점으로 이루어진 무방향 그래프에서 n개의 정점과 n-1개의 간설으로 이루어진 트리 (즉, 싸이클이 없는 트리형태)
+
+MST의 표현 : 그래프, 간선들의 배열, 인접 리스트, 부모 자식관계와 가중치에 대한 배열
+부모 자식관계와 가중치에 대한 배열 -> 
+		0 1 2 3 4 5 6 
+Parent  0 2 0 4 2 3 2
+Weight 	0 21 31 34 18 25
+
+Prim 알고리즘 (그리디와 유사)
+: 하나의 정점에서 연결된 간선들 중에 하나씩 선택하면서 MST를 만들어 가는 방식
+1) 임의 정점을하나 선택해서 시작
+2) 선택한 정점을 포함한 트리와 인접하는 정점들의 중의 최소 비용의 간설이 존재하는 정점을 선택(싸이클이 생기지 않아야함)
+3) 모든 정점이 선택될 때 까지 1),2) 반복
+
+int n, graph[max_n][max_n], parent[max_n], weight[max_n];
+
+int prim() {
+	for(int i = 0; i < n; i++) {
+		weight[i] = -1; // 각각의 노드가 아직 선택되지 않았다는 의미
+	}
+	weight[0] = 0;
+	for(int k = 1; k < n; k++) {
+		int minWeight = Integer.MAX_VALUE;
+		int minVertex;
+		int minParent;
+		for(int i = 0; j < n; i++) {
+			if(weight[i] < 0) continue; // 아직 연결되지 않은 노드이므로 제외
+			for(int j = 0; j < n; j++) {
+				if(weight[j] >= 0) continue; // 이미 선택된 노드이므로 제외(싸이클이 생기므로) ex) 0,1,2 노드가 있을 때 0-1이 선택된 상태일때 2-0을 이어버리면 싸이클 생김
+				if(graph[i][j] < minWeight) {
+					minVertex = j; minParent = i;
+					minWeight = graph[i][j];
+				}
+			}
+		}
+		parent[minVertex] = minParent;
+		weight[minVertex] = minWeight;
+	}
+	int sumCost = 0;
+	for(int i = 0; i < n; i++) sumCost += weight[i];
+	reutnr sumCost;
+}
+
+Piority Queue를 사용하여 성능 개선
+
+int n, graph[max_n][max_n];
+
+int prim() {
+	priority_queue; // 작은 가중치를 갖는 정점이 우선순위가 높도록 구현
+	boolean visited[max_n]; // 싸이클이 생기지 않도록 노드를 두번 선택하지 않아야함
+	visited[0] = true;
+	for(int next = 0; next < n; next++){
+		pq.push(<graph[0][next],next>); // <가중치, 노드번호>
+	}
+	
+	int sumCost = 0;
+	while(!pq.empty()) {
+		int curr = pq.top().second; // top : 값만 읽어오고 pop은 안함
+		int weight = pq.top().first;
+		pq.pop();
+		if(visited[curr]) continue;
+		visited[curr] = true;
+		sumCost += weight;
+		
+		for(int next = 0; next < n; next++)
+			pq.push(<graph[curr][next], next>);
+	}
+		
+		

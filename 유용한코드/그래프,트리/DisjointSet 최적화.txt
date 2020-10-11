@@ -25,6 +25,7 @@ int find(int u) {
 	return parent[u] = find(parent[u]);
 }
 
+
 void union(int u, int v) {
 	u = find(u);
 	v = find(v);

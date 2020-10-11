@@ -46,6 +46,6 @@ void union(int x, int y){
 	y = find(y);
 	
 	if(x !=y)
-	root[y] = x;
+	parent[y] = x;
 }
 
