@@ -1,0 +1,87 @@
+최단 경로?
+간선의 가중치가 있는 그래프에서 두 정점 사이의 경로들 중에 간선의 가중치의 합이 최소인 경로
+
+하나의 시작 정점에서 끝  정점까지의 최단 경로
+- 다익스트라 : 음의 가중치를 허용하지 않음
+- 벨만포드 : 음의 가중치 허용
+
+모든 정점들에 대한 최단 경로
+- 플로이드-와샬
+
+
+다익스트라
+시작 정점에서 거리가 최소인 정점을 선택해 나가면서 최단경로를 구하는 방식이다.
+
+- 시작정점 s 에서 끝정점 t 까지의 최단 경로에 정점 x가 존재한다.
+- 이때 최단경로는 s 에서 x 까지의 최단경로와 x 에서 t까지의 최단경로로 구성된다.
+
+
+코드
+
+// graph: 인접행렬, 자기 자신 외에 이어져 있지 않은 정점과의 cost는 무한으로 표시, 자기자신과는 0으로 표시
+// dist : 최단 경로가 들어있는 배열, 이 배열을 점점 채워나갈 것임
+// prev : 만약 경로를 추가해야한다면 prev 배열을 이용한다. 자기까지 오기 직전 노드의 값을 저장한다.
+int n, graph[n][n], dist[n], prev[n]; 
+
+void dijkstra(int start) {
+	boolean visited[n];
+	for(int i = 0; i < n; i++) {
+		prev[i] = -1;
+		Dist[i] = Integer.MAX_VALUE;
+	}
+		
+	dist[stat] = 0;
+	
+	for(int i = 0; i < n; i++) {
+		int minCost =  Integer.MAX_VALUE;
+		int minVertex;
+		for(int j = 0; j < n; j++) {
+			if(!visited[j] && dist[j] < minCost) { // 아직 방문하지 않은 정점들 중에서 cost가 낮은 거 선택
+				minCost = dist[j];
+				minVertex = j;
+			}
+		}
+		visited[minVertex] = true;
+		// minVertex에서 갈 수 있는 경로를 포함하여 더 짧은 경로로 dist배열 업데이트
+		for(int j = 0; j < n; j++) {
+			if(dist[j] > dist[minVertex] + graph[minVertex][j]) { // 더 짧은 경로를 찾았을 때
+				prev[j] = minVertex;
+				dist[j] = dist[minVertex] + graph[minVertex][j];
+			}
+		}
+	}
+}
+
+시간복잡도
+위 코드는 O(v^2 + E)의 시간복잡도를 가진다.
+간선의 개수가 많다면 효율적인 알고리즘일 수 있겠지만 정점의 개수가 많아진다면 시간이 엄청 오래 걸린다.
+
+따라서, 정점의 개수가 많을 경우에는 우선순위 큐를 이용하여 구현하면 된다. 이 경우에 시간복잡도는 O(E*logV) 이다.
+
+우선순위 큐를 이용한 코드
+Node {
+    int v; // vertex
+    int w; // weight
+}
+int n, dist[n];
+List<Node>[] list; // 연결정보 저장 
+void dijkstra(int start) {
+    boolean visited[n];
+    priority_queue pq;
+    dist[start] = 0;
+    pq.push(Node); <정점번호, 가중치>
+    
+    while(!pq.empty() {
+    	Node curr = pq.pop();
+        
+        if(visited[curr]) continue;
+        visited[curr] = true;
+        
+        for(Node next : list[curr.v]) {
+	    if(dist[next.v] > dist[curr.v] + next.weight) {
+                dist[next.v] = dist[curr.v] + next.weight;
+                pq.push(new Node(next.v, dist[next.v]);
+            }
+        }
+    }
+}
