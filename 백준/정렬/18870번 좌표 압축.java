@@ -15,8 +15,7 @@ class Main {
 		
 		HashMap<Integer, Integer> map = new HashMap<>();
 		
-		int arr2[] = Arrays.stream(arr).distinct().toArray();
-		Arrays.sort(arr2);
+		int arr2[] = Arrays.stream(arr).distinct().sorted().toArray();
 		
 		for(int i = 0; i < arr2.length; i++) map.put(arr2[i], i);
 		
