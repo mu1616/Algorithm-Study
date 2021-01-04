@@ -11,21 +11,23 @@ class Main {
 
 	public void solution() {
 		int n = scan.nextInt();
-		BigInteger num = new BigInteger("1");
-		for (int i = 2; i <= n; i++) {
-			if (i % 10 == 2 || i % 10 == 5 || i % 10 == 0) {
-				num = num.multiply(new BigInteger(String.valueOf(i)));
-			}
+		int count =  0;
+		for (int i = 1; i <= n; i++) {
+			count += count(i);
 		}
-		int answer = 0;
-		String str = num.toString();
-		for (int i = str.length() - 1; i >= 0; i--) {
-			if (str.charAt(i) == '0') {
-				answer++;
+		System.out.println(count);
+	}
+	
+	public int count(int num) {
+		int count = 0;
+		while (true) {
+			if (num % 5 == 0) {
+				count++;
+				num = num / 5;
 			} else {
 				break;
 			}
 		}
-		System.out.println(answer);
+		return count;
 	}
 }
